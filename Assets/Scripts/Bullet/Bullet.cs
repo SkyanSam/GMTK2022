@@ -7,11 +7,11 @@ public class Bullet : MonoBehaviour
     public Vector2 velocity;
     public float speed;
     public float rotation;
-    void Start()
+    public void Start()
     {
         transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
-    void Update()
+    public void Update()
     {
         transform.Translate(velocity * speed * Time.deltaTime);
     }

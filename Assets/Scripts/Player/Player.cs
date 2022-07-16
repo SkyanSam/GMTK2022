@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance { get; private set; }
     public int startHp;
     int hp;
     public float bulletCooldown;
     float bulletTimer;
     void Start()
     {
+        Instance = this;
         hp = startHp;
     }
     void Update()
