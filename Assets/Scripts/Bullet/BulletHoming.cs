@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class BulletHoming : Bullet
 {
-    public float homingTransitionSpeed;
+    public float steerForce;
     public float targetRotation;
+    public Vector2 acceleration;
+    new public void Start()
+    {
+        base.Start();
+        useOnlyVelocity = true;
+    }
     new public void Update()
     {
-        var playerBulletVector = (Player.Instance.transform.position - transform.position).normalized;
-        targetRotation = Mathf.Atan2(playerBulletVector.y, playerBulletVector.x) * Mathf.Rad2Deg;
-        //rotation = Mathf.MoveTowards(rotation, targetRotation, homingTransitionSpeed * Time.deltaTime);
-        transform.rotation = Vector4.MoveTowards(transform.rotation.ToVector4(), Quaternion.Euler(0, 0, targetRotation).ToVector4(), homingTransitionSpeed * Time.deltaTime).ToQuaternion();
+        var desired = (Vector2)(Player.Instance.transform.position - transform.position).normalized;
+        acceleration = (desired - velocity).normalized * steerForce;
+        velocity += acceleration * Time.deltaTime;
+        //velocity = Vector2.ClampMagnitude(velocity, 1);
+        velocity = velocity.normalized;
+        rotation = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
         base.Update();
     }
 }

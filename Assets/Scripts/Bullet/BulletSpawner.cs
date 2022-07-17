@@ -9,7 +9,7 @@ public class BulletSpawner : MonoBehaviour
     public float maxRotation;
     public int numberOfBullets;
     public bool isRandom;
-
+    public bool useOnlyVelocity;
     public float cooldown;
     float timer;
     public float bulletSpeed;
@@ -83,7 +83,19 @@ public class BulletSpawner : MonoBehaviour
             var b = spawnedBullets[i].GetComponent<Bullet>();
             b.rotation = rotations[i];
             b.speed = bulletSpeed;
-            b.velocity = bulletVelocity;
+            if (useOnlyVelocity)
+            {
+                b.velocity = new Vector2(Mathf.Cos(rotations[i] * Mathf.Deg2Rad), Mathf.Sin(rotations[i] * Mathf.Deg2Rad));
+                b.useOnlyVelocity = true;
+            }
+            else
+            {
+                b.velocity = bulletVelocity;
+            }
+            
+
+            
+            
         }
         return spawnedBullets;
     }
