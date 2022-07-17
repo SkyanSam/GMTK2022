@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TankMovement : MonoBehaviour
 {
+    BulletSpawner bulletSpawner;
     public float speed;
     public Vector2 startPos;
     public Vector2 endPos;
@@ -17,6 +18,7 @@ public class TankMovement : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        bulletSpawner = transform.Find("BulletSpawner").GetComponent<BulletSpawner>();
         if (mode == Mode.GoToStart) transform.position = startPos;
         else transform.position = endPos;
     }
@@ -36,6 +38,15 @@ public class TankMovement : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
             spriteRenderer.flipX = endPos.x < startPos.x;
+        }
+
+        if (spriteRenderer.flipX)
+        {
+            bulletSpawner.minRotation = bulletSpawner.maxRotation = 180;
+        }
+        else
+        {
+            bulletSpawner.minRotation = bulletSpawner.maxRotation = 0;
         }
     }
     private void OnDrawGizmos()

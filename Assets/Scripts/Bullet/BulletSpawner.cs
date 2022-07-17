@@ -10,6 +10,7 @@ public class BulletSpawner : MonoBehaviour
     public int numberOfBullets;
     public bool isRandom;
     public bool useOnlyVelocity;
+    public bool isParent;
     public float cooldown;
     float timer;
     public float bulletSpeed;
@@ -21,14 +22,6 @@ public class BulletSpawner : MonoBehaviour
     {
         timer = cooldown;
         rotations = new float[numberOfBullets];
-        if (!isRandom)
-        {
-            /* 
-             * This doesn't need to be in update because the rotations will be the same no matter what
-             * Unless if we change min Rotation and max Rotation Variables leave this in Start.
-             */
-            DistributedRotations();
-        }
     }
 
     // Update is called once per frame
@@ -56,6 +49,11 @@ public class BulletSpawner : MonoBehaviour
     // This will set random rotations evenly distributed between the min and max Rotation.
     public float[] DistributedRotations()
     {
+        if (numberOfBullets == 1)
+        {
+            rotations[0] = (minRotation + maxRotation) / 2;
+            return rotations;
+        }
         for (int i = 0; i < numberOfBullets; i++)
         {
             var fraction = (float)i / ((float)numberOfBullets - 1);
@@ -73,13 +71,16 @@ public class BulletSpawner : MonoBehaviour
             // This is in Update because we want a random rotation for each bullet each time
             RandomRotations();
         }
+        else
+        {
+            DistributedRotations();
+        }
 
         // Spawn Bullets
         GameObject[] spawnedBullets = new GameObject[numberOfBullets];
         for (int i = 0; i < numberOfBullets; i++)
         {
             spawnedBullets[i] = Instantiate(bulletResource, transform);
-            
             var b = spawnedBullets[i].GetComponent<Bullet>();
             b.rotation = rotations[i];
             b.speed = bulletSpeed;
@@ -91,7 +92,10 @@ public class BulletSpawner : MonoBehaviour
             else
             {
                 b.velocity = bulletVelocity;
+                b.useOnlyVelocity = false;
             }
+
+            if (!isParent) spawnedBullets[i].transform.parent = null;
             
 
             

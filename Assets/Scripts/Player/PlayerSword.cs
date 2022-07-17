@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerSword : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
+    PolygonCollider2D polygonCollider;
     public float cooldownTotalTime = 1;
     public float swingTime = 0.5f;
     float startAngle;
@@ -13,36 +14,43 @@ public class PlayerSword : MonoBehaviour
     void Start()
     {
         spriteRenderer = transform.Find("gfx").GetComponent<SpriteRenderer>();
+        polygonCollider = GetComponent<PolygonCollider2D>();
+        DisableSword();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && cooldownRemainingTime <= 0)
         {
+            cooldownRemainingTime = cooldownTotalTime;
             if (PlayerAnimation.Instance.directionFacing == PlayerAnimation.DirectionFacing.Left)
             {
-                //spriteRenderer.flipX = true;
-                var tempPos = transform.localPosition;
-                tempPos.x = -Mathf.Abs(tempPos.x);
-                transform.localPosition = tempPos;
-                startAngle = 90;
-                endAngle = -90;
+                transform.parent.localScale = new Vector3(-1, 1, 1);
+                startAngle = 270;
+                endAngle = 90;
             }
             else
             {
-                spriteRenderer.flipX = false;
-                var tempPos = transform.localPosition;
-                tempPos.x = Mathf.Abs(tempPos.x);
-                transform.localPosition = tempPos;
+                transform.parent.localScale = new Vector3(1, 1, 1);
                 startAngle = 90;
                 endAngle = 270;
             }
             transform.eulerAngles = new Vector3(0, 0, startAngle);
-            spriteRenderer.enabled = true;
+            EnableSword();
             var seq = LeanTween.sequence();
             seq.append(LeanTween.rotate(gameObject, new Vector3(0, 0, endAngle), swingTime));
-            seq.append(() => spriteRenderer.enabled = false);
+            seq.append(() => DisableSword());
         }
+        cooldownRemainingTime -= Time.deltaTime;
+    }
+    public void DisableSword()
+    {
+        polygonCollider.enabled = false;
+        spriteRenderer.enabled = false;
+    }
+    public void EnableSword()
+    {
+        polygonCollider.enabled = true;
+        spriteRenderer.enabled = true;
     }
 }
