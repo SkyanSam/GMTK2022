@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -9,10 +10,14 @@ public class Player : MonoBehaviour
     int hp;
     public float bulletCooldown;
     float bulletTimer;
+    GameObject healthBar;
+    GameObject healthBarInner;
     void Start()
     {
         Instance = this;
         hp = startHp;
+        if (healthBar == null) healthBar = transform.Find("HealthBar").gameObject;
+        healthBarInner = healthBar.transform.Find("HealthBarInner").gameObject;
     }
     void Update()
     {
@@ -25,6 +30,17 @@ public class Player : MonoBehaviour
             hp -= 1;
             print(hp);
             bulletTimer = bulletCooldown;
+            UpdateHealthBar();
+            if (hp <= 0)
+            {
+                SceneManager.LoadScene("Overworld");
+            }
         }
+    }
+    void UpdateHealthBar()
+    {
+        var tempScale = healthBarInner.transform.localScale;
+        tempScale.x = Mathf.Lerp(0, 0.9f, (float)hp / startHp);
+        healthBarInner.transform.localScale = tempScale;
     }
 }

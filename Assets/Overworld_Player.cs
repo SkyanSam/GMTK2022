@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Overworld_Player : MonoBehaviour
 {
+    public static Overworld_Player Instance;
     Grid grid;
     Transform playerSprite;
 
@@ -13,7 +14,7 @@ public class Overworld_Player : MonoBehaviour
     public int numFollowers;
 
     [HideInInspector]
-    public int currentPointIndex = 0;
+    public static int currentPointIndex = 0;
     [Header("Movement Visuals")]
     int targetPointIndex = 0;
     int lastPointIndex = 0;
@@ -30,6 +31,7 @@ public class Overworld_Player : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
         grid = GameObject.Find("Grid Manager").GetComponent<Grid>();
         playerSprite = transform.GetChild(0);
         transform.position = new Vector3(grid.points[currentPointIndex].position.x, grid.points[currentPointIndex].position.y, 0);

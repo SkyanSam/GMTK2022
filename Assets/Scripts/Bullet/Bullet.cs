@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     public float speed;
     public float rotation;
     public float startLifetime = 10;
-    float currLifetime;
+    public float currLifetime;// { get; private set; } 
     public bool useOnlyVelocity = false;
     public void Start()
     {
@@ -19,8 +19,17 @@ public class Bullet : MonoBehaviour
     {
         if (useOnlyVelocity) transform.position += (Vector3)velocity * speed * Time.deltaTime;
         else transform.Translate(velocity * speed * Time.deltaTime);
+
         transform.rotation = Quaternion.Euler(0, 0, rotation);
         currLifetime -= Time.deltaTime;
-        if (currLifetime < 0) Destroy(gameObject);
+
+        if (currLifetime < 0)
+        {
+            OnBulletLifetimeOver();
+        }
+    }
+    public virtual void OnBulletLifetimeOver()
+    {
+        Destroy(gameObject);
     }
 }

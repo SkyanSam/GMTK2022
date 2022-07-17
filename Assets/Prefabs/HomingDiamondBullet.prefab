@@ -149,7 +149,8 @@ MonoBehaviour:
   velocity: {x: 1, y: 0}
   speed: 5
   rotation: 0
-  startLifetime: 10
+  startLifetime: 5
+  currLifetime: 0
   useOnlyVelocity: 1
   steerForce: 3
   targetRotation: 0

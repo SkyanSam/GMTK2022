@@ -77,6 +77,7 @@ public class Dice_Manager : MonoBehaviour
 
     void MovePlayer(int diceNum)
     {
-        player.GetComponent<Overworld_Player>().ChangePoint(player.GetComponent<Overworld_Player>().currentPointIndex + diceNum);
+        player.GetComponent<Overworld_Player>().ChangePoint(Overworld_Player.currentPointIndex + diceNum);
+        //player.GetComponent<Overworld_Player>().ChangePoint(player.GetComponent<Overworld_Player>().currentPointIndex + diceNum);
     }
 }

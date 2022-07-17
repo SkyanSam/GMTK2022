@@ -64,6 +64,18 @@ PrefabInstance:
       propertyPath: useOnlyVelocity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7799353457750377059, guid: 1c56e1dae9eee464abb50f28cba4778d, type: 3}
+      propertyPath: easyCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7799353457750377059, guid: 1c56e1dae9eee464abb50f28cba4778d, type: 3}
+      propertyPath: hardCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7799353457750377059, guid: 1c56e1dae9eee464abb50f28cba4778d, type: 3}
+      propertyPath: mediumCooldown
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c56e1dae9eee464abb50f28cba4778d, type: 3}
