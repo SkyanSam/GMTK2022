@@ -31,11 +31,6 @@ public class Slot_Machine_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            ChangeState(GameState.OVERWORLD);
-        }
-
         if(currentState == GameState.SLOT_MACHINE)
         {
             UpdateSlotMachine();
