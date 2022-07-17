@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bb173a3c3dec9a84e941e55721dcfc78
+guid: a2ae33a740ec5244287f03c15bebde54
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,8 +70,8 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,11 +102,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tanky_spritesheet_0
+      name: Follower_Roll_0
       rect:
         serializedVersion: 2
         x: 0
@@ -120,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef8434e19843d524bbac1c480d7a543d
-      internalID: -80854680
+      spriteID: 6a4d6928b686ff04182441a14e09b5b1
+      internalID: -1132995164
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tanky_spritesheet_1
+      name: Follower_Roll_1
       rect:
         serializedVersion: 2
         x: 32
@@ -141,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c44504dc9589a48478cfc6784adce15d
-      internalID: -309738582
+      spriteID: 397af0f911d20f243bab450ab4c10085
+      internalID: -1497094734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tanky_spritesheet_2
+      name: Follower_Roll_2
       rect:
         serializedVersion: 2
         x: 64
@@ -162,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2ab06732fc243a47ae851823fa32131
-      internalID: 1129105419
+      spriteID: ce72db7b8ddb5fc40a1e62db95bce048
+      internalID: -897727555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tanky_spritesheet_3
+      name: Follower_Roll_3
       rect:
         serializedVersion: 2
         x: 96
@@ -183,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30bdd57441f18494ba9d57888402a127
-      internalID: -908503740
+      spriteID: da5d004a94a1f834594f309d5c7ef769
+      internalID: 1419734484
       vertices: []
       indices: 
       edges: []
@@ -200,10 +212,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tanky_spritesheet_1: -309738582
-      tanky_spritesheet_0: -80854680
-      tanky_spritesheet_2: 1129105419
-      tanky_spritesheet_3: -908503740
+      Follower_Roll_3: 1419734484
+      Follower_Roll_0: -1132995164
+      Follower_Roll_2: -897727555
+      Follower_Roll_1: -1497094734
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
