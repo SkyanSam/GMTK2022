@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(Grid))]
-[System.Serializable]
+[InitializeOnLoad]
 public class Grid_Editor : Editor
 {
     Grid grid;
@@ -29,25 +29,39 @@ public class Grid_Editor : Editor
             {
                 Handles.color = Color.green;
                 Vector2 newPos = Handles.FreeMoveHandle(grid.points[i].position, 0.5f, Vector2.zero, Handles.CylinderHandleCap);
-                string gridType;
+                string gridType = "";
 
                 if (grid.points[i].position != newPos)
                 {
-                    Undo.RecordObject(grid.gameObject, "Undo Move Point");
+                    Undo.RecordObject(grid.points[i], "Undo Move Point");
                     grid.points[i].position = newPos;
+
+                    EditorUtility.SetDirty(grid.points[i]);
                 }
 
                 //Label points with their type
                 //Add one statement for each grid type
-                if (grid.points[i].pointType == Grid_Point.Point_Type.COMBAT)
+                if (grid.points[i].pointType == Grid_Point.Point_Type.COMBAT_EASY)
                 {
-                    gridType = "Combat";
+                    gridType = "Easy";
+                }
+                else if(grid.points[i].pointType == Grid_Point.Point_Type.COMBAT_MEDIUM)
+                {
+                    gridType = "Medium";
+                }
+                else if(grid.points[i].pointType == Grid_Point.Point_Type.COMBAT_HARD)
+                {
+                    gridType = "Hard";
+                }
+                else if (grid.points[i].pointType == Grid_Point.Point_Type.START)
+                {
+                    gridType = "Start";
                 }
                 else
                 {
-                    gridType = "Loot";
+                    gridType = "Finish";
                 }
-                Handles.Label(grid.points[i].position + new Vector2(0, 1), gridType);
+                Handles.Label(grid.points[i].position + new Vector2(0, 1), gridType + " " + i);
 
                 //Draw line to show grid order
                 if(i > 0)
