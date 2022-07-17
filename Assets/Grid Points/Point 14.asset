@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8d23cc22293684eb0966e5f4b91b62, type: 3}
   m_Name: Point 14
   m_EditorClassIdentifier: 
-  pointType: 0
-  position: {x: 0, y: 0}
+  pointType: 1
+  position: {x: -0.88921213, y: 4.865504}
