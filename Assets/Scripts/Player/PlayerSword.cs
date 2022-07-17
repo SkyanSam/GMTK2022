@@ -22,6 +22,7 @@ public class PlayerSword : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && cooldownRemainingTime <= 0)
         {
+            AudioManager.current.PlaySound("Swing");
             cooldownRemainingTime = cooldownTotalTime;
             if (PlayerAnimation.Instance.directionFacing == PlayerAnimation.DirectionFacing.Left)
             {

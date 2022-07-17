@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
         if (collision.tag == "Bullet" && bulletTimer <= 0)
         {
             hp -= 1;
+            AudioManager.current.PlaySound("Hit");
             print(hp);
             bulletTimer = bulletCooldown;
             UpdateHealthBar();
