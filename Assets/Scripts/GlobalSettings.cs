@@ -10,4 +10,5 @@ public static class GlobalSettings
         Hard
     }
     public static Difficulty difficulty = Difficulty.Easy;
+    public static bool success = false;
 }

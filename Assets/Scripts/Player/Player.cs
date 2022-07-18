@@ -25,9 +25,10 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Bullet" && bulletTimer <= 0)
+        if (collision.tag == "Bullet" && bulletTimer <= 0 && !PlayerSword.Instance.usingSword)
         {
             hp -= 1;
+            Destroy(collision.gameObject);
             AudioManager.current.PlaySound("Hit");
             print(hp);
             bulletTimer = bulletCooldown;

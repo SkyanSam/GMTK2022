@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
         if (pointType == Grid_Point.Point_Type.COMBAT_MEDIUM) GlobalSettings.difficulty = GlobalSettings.Difficulty.Medium;
         if (pointType == Grid_Point.Point_Type.COMBAT_HARD) GlobalSettings.difficulty = GlobalSettings.Difficulty.Hard;
 
+        Slot_Machine_Controller.instance.ChangeState(Slot_Machine_Controller.GameState.OVERWORLD);
 
         if (pointType == Grid_Point.Point_Type.START)
         {

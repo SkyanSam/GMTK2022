@@ -28,6 +28,7 @@ public class EnemyManager : MonoBehaviour
     public IEnumerator Success()
     {
         success.SetActive(true);
+        GlobalSettings.success = true;
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Overworld");
     }

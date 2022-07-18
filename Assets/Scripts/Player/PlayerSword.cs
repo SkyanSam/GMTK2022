@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class PlayerSword : MonoBehaviour
 {
+    public static PlayerSword Instance;
     SpriteRenderer spriteRenderer;
     PolygonCollider2D polygonCollider;
     public float cooldownTotalTime = 1;
     public float swingTime = 0.5f;
     float startAngle;
     float endAngle;
+    public bool usingSword { get; private set; } = false;
     public float cooldownRemainingTime { get; private set; }
     void Start()
     {
         spriteRenderer = transform.Find("gfx").GetComponent<SpriteRenderer>();
         polygonCollider = GetComponent<PolygonCollider2D>();
+        Instance = this;
         DisableSword();
     }
 
@@ -46,11 +49,13 @@ public class PlayerSword : MonoBehaviour
     }
     public void DisableSword()
     {
+        usingSword = false;
         polygonCollider.enabled = false;
         spriteRenderer.enabled = false;
     }
     public void EnableSword()
     {
+        usingSword = true;
         polygonCollider.enabled = true;
         spriteRenderer.enabled = true;
     }

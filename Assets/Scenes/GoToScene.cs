@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GoToScene : MonoBehaviour
 {
-    public 
-    void Start()
+    public void Start()
     {
         
     }

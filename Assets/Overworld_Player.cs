@@ -41,6 +41,11 @@ public class Overworld_Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentPointIndex >= Grid.Instance.points.Count - 1)
+        {
+            currentPointIndex = 0;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("M_Ending");
+        }
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
 
         if ((pos - grid.points[targetPointIndex].position).magnitude > 0.1f)
@@ -108,6 +113,11 @@ public class Overworld_Player : MonoBehaviour
     void SetTarget(int newTargetIndex)
     {
         targetPointIndex = newTargetIndex;
+    }
+    public void SetTargetBack()
+    {
+        if (currentPointIndex > 3)
+        targetPointIndex = currentPointIndex - 3;
     }
 
      void MoveCharacter()

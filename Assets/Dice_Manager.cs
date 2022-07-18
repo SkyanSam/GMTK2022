@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Dice_Manager : MonoBehaviour
 {
+    public static Dice_Manager instance;
     GameObject player;
 
     [Header("Dice Logic")]
@@ -24,6 +25,7 @@ public class Dice_Manager : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        instance = this;
     }
 
     // Update is called once per frame
@@ -75,7 +77,7 @@ public class Dice_Manager : MonoBehaviour
         }
     }
 
-    void MovePlayer(int diceNum)
+    public void MovePlayer(int diceNum)
     {
         player.GetComponent<Overworld_Player>().ChangePoint(Overworld_Player.currentPointIndex + diceNum);
         //player.GetComponent<Overworld_Player>().ChangePoint(player.GetComponent<Overworld_Player>().currentPointIndex + diceNum);

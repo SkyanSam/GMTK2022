@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Slot_Machine_Controller : MonoBehaviour
 {
+    public static Slot_Machine_Controller instance;
     GameObject player;
 
     public Canvas levelStartCanvas;
@@ -23,6 +24,7 @@ public class Slot_Machine_Controller : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        instance = this;
         ChangeState(GameState.OVERWORLD);
         levelStartCanvas.gameObject.SetActive(false);
         slotMachine.SetActive(false);
@@ -100,12 +102,16 @@ public class Slot_Machine_Controller : MonoBehaviour
         slotMachine.SetActive(true);
         slotMachineAnimator.Play("Slot_Machine_Fly_In_Bottom");
 
+        win = Random.Range(0, 2) == 0 ? true : false;
+        slotMachine.transform.GetChild(0).GetComponent<Animator>().SetBool("Win", win);
+
         ChangeState(GameState.SLOT_MACHINE);
     }
 
+    bool win = false;
     public void UpdateSlotMachine()
     {
-        if(slotMachine.transform.position.y == 4.51f)
+        if (slotMachine.transform.position.y == 4.51f)
         {
             slotMachine.transform.GetChild(0).GetComponent<Animator>().SetBool("StartRoll", true);
         }
@@ -116,7 +122,17 @@ public class Slot_Machine_Controller : MonoBehaviour
         slotMachine.transform.GetChild(0).GetComponent<Animator>().SetBool("StartRoll", false);
         slotMachine.transform.GetChild(0).GetComponent<Animator>().Play("Slot_Idle");
         Animator slotMachineAnimator = slotMachine.GetComponent<Animator>();
-
+        var m_CurrentClipInfo = slotMachine.transform.GetChild(0).GetComponent<Animator>().GetCurrentAnimatorClipInfo(0);
+        if (m_CurrentClipInfo[0].clip.name == "Slot_Lose")
+        {
+            //Overworld_Player.Instance.SetTargetBack();
+            if (Overworld_Player.currentPointIndex > 3)
+                Dice_Manager.instance.MovePlayer(-3);
+            else if (Overworld_Player.currentPointIndex > 2)
+                Dice_Manager.instance.MovePlayer(-2);
+            else if (Overworld_Player.currentPointIndex > 1)
+                Dice_Manager.instance.MovePlayer(-1);
+        }
         slotMachineAnimator.Play("Slot_Machine_Fly_Out_Bottom");
 
         ChangeState(GameState.OVERWORLD);

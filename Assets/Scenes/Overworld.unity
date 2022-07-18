@@ -324,9 +324,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3b6a12a85347c4bb4a2d6f450b4655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLevelName: 
+  startLevelName: StartLevel
   levelSceneNames:
   - Level1
+  - Level2
+  - Level3
+  - Level4
+  - Level5
 --- !u!4 &86848268
 Transform:
   m_ObjectHideFlags: 0
@@ -1806,8 +1810,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 96
+  m_fontSizeBase: 96
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2188,8 +2192,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 96
+  m_fontSizeBase: 96
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
